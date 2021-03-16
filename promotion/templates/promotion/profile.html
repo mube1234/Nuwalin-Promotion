@@ -1,0 +1,43 @@
+{% extends 'promotion/base.html' %}
+{% block title %} profile {% endblock %}
+{% block content %}
+{% load static %}
+<div class="container-fluid" style="margin-top:90px;">
+<div class="row">
+ <div class="col-md-8">
+       <div class="row card card-body" >
+           <div style="background:#f2f2f2;padding:12px;">
+               <center><a href=""><img class="rounded-circle" style="width:140px;height:140px;" src="{{user.userprofile.image.url}}"></a><p><b>{{customer.username}}</b></p></center>
+           </div>
+           <div>
+                <img style="width:20px;height:20px;" src="{% static 'icons/team1.png' %}"> <a href="{% url 'my_follower' customer.id %}" >{{profiles.follower.count}} Followers</a>&nbsp&nbsp
+                <img style="width:20px;height:20px;" src="{% static 'icons/coins.png' %}"> <a href=""> Points</a>
+           </div>
+             <hr style="background:indigo;height:3px">
+<div class="row">
+    <div class="col-md-6">
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/user3.png' %}"> <b>Frist Name</b>:&nbsp&nbsp {{customer.first_name}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/father.png' %}">  <b>Last Name</b>:&nbsp&nbsp {{customer.last_name}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/mssg.png' %}"> <b>Email</b>:&nbsp&nbsp {{customer.email}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/location.png' %}"> <b>Address</b>:&nbsp&nbsp {{profiles.address}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/phone2.png' %}"> <b>Phone</b>:&nbsp&nbsp {{profiles.phone}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/gender2.png' %}"> <b>Gender</b>:&nbsp&nbsp {{profiles.gender}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/star.png' %}"> <b>Work</b>:&nbsp&nbsp {{profiles.work}}</p>
+         <div class="form-group">
+            <a href="{% url 'edit_profile' %}"  class="btn btn-info" >Edit Profile</a>
+           </div>
+     </div>
+     <div class="col-md-6">
+             {% if user_follower %}
+             <a  href="{% url 'friend_profile' user_follower.id %}">{{user_follower.get_full_name}}</a> and {{all_follows}} <a href="{% url 'my_follower' customer.id %}">others following you</a>
+             <a  href="{% url 'friend_profile' user_follower.id %}"><img style="height:200px;" class="card-img-top" src="{{user_follower.userprofile.image.url}}"></a>
+             {% else %}
+              <a  href=""><img style="height:300px;" class="card-img-top" src="{{user.userprofile.image.url}}"></a>
+             {% endif %}
+     </div>
+    </div>
+   </div>
+   </div>
+</div>
+</div>
+{% endblock content %}

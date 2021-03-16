@@ -1,0 +1,31 @@
+{% extends 'promotion/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md" style="margin-top:80px;">
+                    <div class="">
+                       <center> <h3 style="background:#998844;color:white;padding:5px;">Other types of promotion Request</h3><hr>
+                         </center>
+                        <table class="table table-striped table-bordered table-responsive">
+                              <tr>
+                                  <th>Owner</th>
+                                  <th>Description</th>
+                                  <th>Contact</th>
+                                  <th>Status</th>
+                                  <th>Action</th>
+                              </tr>
+                              {% for order in other %}
+                                <tr>
+                                    <td>{{order.owner}}</td>
+                                    <td>{{order.description}}</td>
+                                    <td>{{order.phone}}</td>
+                                   <td style="color:blue"> <a  href="{% url 'other_approve' order.id %}" ><b>{{order.status}}</b></a></td>
+                                    <td><a class="btn btn-sm btn-info" href="">Detail</a></td>
+                                    </tr>
+                              {% endfor %}
+
+                          </table>
+                        <p>{{other.count}} result found</p>
+                    </div>
+
+            </div>
+{% endblock content  %}

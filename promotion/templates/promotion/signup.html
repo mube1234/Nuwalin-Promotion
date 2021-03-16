@@ -1,0 +1,34 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="" style="margin-top:80px;">
+
+
+<div class="container-fluid">
+ <div class="col-md-6">
+
+              <center><h3>Create Account</h3></center><br>
+            {% if messages %}
+                     {% for message in messages %}
+                      <section style="background:green;color:white;padding:5px;">
+                           <strong>Done!</strong> <small>{{message}} <a href="{% url 'login' %}" class="btn btn-info btn-sm">Login</a> </small>
+                       </section>
+                        {% endfor %}
+            {% endif %}
+
+  <form action="" method="post">
+                      {% csrf_token %}
+          <div class="panel-body">
+                      {{form|crispy}}<br>
+                      <button id="signup" input type="submit" name="Register" class="btn btn-info">Join Now</button>
+              <div style="float:right">
+                   <small>Already have account ?</small><a href="{% url 'login' %}"> Sign in</a>
+              </div>
+          </div>
+  </form>
+</div>
+ </div>
+</div>
+
+{% endblock content %}

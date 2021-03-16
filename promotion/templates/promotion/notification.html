@@ -1,0 +1,15 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="row" style="margin-top:80px;">
+<div class=" col-md-6">
+<div class=" card card-body">
+    <h3>Notifications </h3>
+      <p class="alert alert-info"><img style="height:18px;weight:18px;"  src="{% static 'icons/notify.png' %}"></a>   <a href="{% url 'promotion_category' %}">Do you need promotion?</a> </p>
+      <p class="alert alert-warning "><img style="height:18px;weight:18px;"  src="{% static 'icons/notify.png' %}"></a>  <a href="{% url 'profile' user.id %}">Please update your profile!</a> </p>
+      <p class="alert alert-success"><img style="height:18px;weight:18px;"  src="{% static 'icons/notify.png' %}"></a>  <a href="{% url 'friend_list' %}">Discover new peoples!</a></p>
+    </div>
+    </div>
+</div>
+{% endblock content %}

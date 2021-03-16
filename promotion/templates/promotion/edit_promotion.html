@@ -1,0 +1,19 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid" style="margin-top:90px;">
+        <div class="row">
+              <div class="col-md-7">
+                  <div class="card card-body" style="background:#f4f4f4">
+                   <center> <a href="" style="text-decoration:none">  <h3>Edit Posted Promotion</h3></a></center>
+                      <form action="" method="post" enctype="multipart/form-data">
+                         {% csrf_token %}
+                           {{form|crispy}}<br>
+                           <button  type="submit" class="btn btn-info">Update</button>
+                    </form>
+                  </div>
+               </div>
+           </div>
+        </div>
+{% endblock content %}

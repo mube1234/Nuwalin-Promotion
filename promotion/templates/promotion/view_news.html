@@ -1,0 +1,28 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+<div class="row">
+         <div class="card col-md-8">
+             <center> <h3 style="background-color:#787865;color:#fff;padding:6px;">Latest News</h3></center><br>
+                 {% for np in newspost %}
+                    <div class="card card-body">
+                        <div class="row">
+                        <div class="col-md-4">
+                            <img style="width:100%;height:auto;margin-right:16px" class="card-img-top" src="{{np.image.url}}" alt="your_image_here">
+                        </div>
+                         <div class="col-md-8">
+                         <a href="{% url 'news_detail' np.id %}">{{np.title}}</a><br>
+                               <small class="text-muted" >{{np.date_posted|date:"F d, Y"}}</small><br>
+                         </div>
+                    </div>
+                </div>
+            {% endfor %}
+             <a href="" class="btn btn-link">more</a>
+         </div>
+
+
+      </div>
+  </div>
+    {% endblock content %}

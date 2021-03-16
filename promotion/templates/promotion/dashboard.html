@@ -1,0 +1,91 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="row container-fluid" style="margin-top:90px;">
+        <div class="col">
+            <div class="col-md">
+               <a href="{% url 'advertising_order' %}">
+                    <div class="card text-center text-white">
+                    <div class="card-header" style="background:#448899">
+                        <h5 class="card-title">Advertising Oders</h5>
+                    </div>
+                    <div class="card-body" style="background:#448899">
+                        <h3 class="card-title">{{total_advert}}</h3>
+                    </div>
+                </div>
+               </a>
+                </div>
+            </div>
+            <div class="col">
+            <div class="col-md">
+              <a href="{% url 'sales_order' %}">
+                    <div class="card text-center text-white">
+                    <div class="card-header" style="background:#442277">
+                        <h5 class="card-title">Sales Promotion</h5>
+                    </div>
+                    <div class="card-body" style="background:#442288">
+                        <h3 class="card-title">{{total_sales_promo}}</h3>
+                    </div>
+                </div>
+              </a>
+                </div>
+            </div>
+
+     <div class="col">
+            <div class="col-md">
+               <a href="{% url 'other_order' %}">
+                <div class="card text-center text-white">
+                    <div class="card-header" style="background:#998844">
+                        <h5 class="card-title">Other</h5>
+                    </div>
+                    <div class="card-body" style="background:#998844">
+                        <h3 class="card-title">{{total_other}}</h3>
+                    </div>
+                </div>
+               </a>
+                </div>
+            </div>
+
+    <div class="col">
+            <div class="col-md">
+                   <a href="{% url 'view_suggestion' %}">
+                <div class="card text-center text-white">
+                    <div class="card-header" style="background:#991299">
+                        <h5 class="card-title"><i>Suggestion</i></h5>
+                    </div>
+                    <div class="card-body" style="background:#993399">
+                        <h3 class="card-title">{{total_suggestion}}</h3>
+                    </div>
+                </div>
+               </a>
+                </div>
+            </div>
+</div>
+
+<div class="container-fluid row">
+        <div class="card card-body">
+               <h5 style="text-align:center;background:green;color:white;padding:8px;">{{total_user}} Active Customers </h5>
+                <table class="table table-bordered table-responsive">
+                    <tr>
+                         <th>Frist Name</th>
+                         <th>Last Name</th>
+                         <th>Address</th>
+                         <th>Date joined</th>
+                         <th>Action</th>
+                    </tr>
+                    {% for customers in customer %}
+                        <tr>
+                            <td>{{customers.first_name}}</td>
+                            <td>{{customers.last_name}}</td>
+                            <td>{{customers.userprofile.address}}</td>
+                            <td>{{customers.date_joined|date:"F d, Y"}}</td>
+
+                             <td><a  href="{% url 'friend_profile' customers.id %}" class="btn btn-sm btn-info">Detail</a>
+                                 <a  class="userdelete btn btn-danger btn-sm"  href="{% url 'deleteuser' customers.id %}" > Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+</div>
+{% endblock content %}

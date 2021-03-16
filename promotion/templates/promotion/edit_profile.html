@@ -1,0 +1,36 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+<div class="row">
+ <div class="col-md-8" >
+      {% if messages %}
+             {% for message in messages %}
+                            <div class="alert alert-success">
+                               <strong>{{message}}</strong>
+                            </div>
+             {% endfor %}
+      {% endif %}
+<div class="card card-body">
+    <center><img class="rounded-circle" style="width:100px;height:100px;" src="{{user.userprofile.image.url}}">
+       <p style="color:blue">{{user.get_full_name}} </p> </center>
+        <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                       {{u_form|crispy}}
+                    </div>
+                <div class="col-md-6">
+                    {{p_form|crispy}}
+                </div>
+            </div>
+                 <div class="form-group">
+                <button type="submit" name="update" class="btn btn-success" >Update</button>
+               </div>
+            </form>
+      </div>
+   </div>
+</div>
+</div>
+{% endblock content %}

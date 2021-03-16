@@ -1,0 +1,23 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+   <div class="row">
+    <div class="col-md-5">
+    <div class="card">
+        <div class="card-body" style="background:#e2e2e2"><a href="{% url 'profile' user.id %}" ><img src="{% static 'icons/verified.png' %}" style="height:25px;width:25px;"> {{user.get_full_name}}</a></div>
+        <div class="card-body text-white" >
+              <a class="list-group-item" href="#">Wallet: <span><kbd>0.00 Birr</kbd> </span></a>
+              <a class="list-group-item" href="{% url 'asetting' %}"> Account Settings</a>
+              <a class="list-group-item"  href="{% url 'edit_profile' %}" > Edit profile</a>
+               <a class="list-group-item" href="{% url 'fqa' %}">Ask What you need</a>
+              <a href="{% url 'suggestion' %}" class="list-group-item" >give Suggestion</a>
+             <a class="list-group-item" href="{% url 'change_password' %}">change password</a>
+            <a class="list-group-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+    {% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'promotion/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+    <div class="row">
+        <div class="col-md-8">
+              <div class="card card-body">
+                 <div style="background:#e2e2e2;padding:12px;">
+                      <center>
+                      <a  href="{{fp.user.userprofile.image.url}}"
+                          onclick="javascript:swapPhoto(); return false;">
+    	             <img class="rounded-circle article-img"  src="{{fp.user.userprofile.image.url}}" style="width:100px;height:100px"/></a>
+                  </center>
+                  <h4  class="text-center">{{fp.user.get_full_name}} <img src="{% static 'icons/okb.png' %}" style="width:20px;height:20px;"> </h4>
+                 </div>
+                  <div class="form-inline">
+                       <button  class="btn btn-info btn-sm"> Call</button>&nbsp;
+                       <button  class="btn btn-success btn-sm"> Message</button>&nbsp;&nbsp;
+                <form action="{% url 'user_follower' %}" method="post" style="margin-top:17px;">
+                   {% csrf_token %}
+                     {% if is_followed %}
+                     <button  class="btn btn-primary btn-sm" type="submit" name="fp_id" value="{{fp.id}}"><span class="glyphicon glyphicon-ok"></span> Following </button>
+                   {% else %}
+                     <button  class="btn btn-primary btn-sm" type="submit" name="fp_id" value="{{fp.id}}"><span class="glyphicon glyphicon-ok"></span> Follow</button>
+                  {% endif %}
+                     </form>&nbsp;&nbsp;
+                     &nbsp;
+                   </div><br>
+                  <div class="form-inlines">
+                  <a href=""><b>{{fp.follower.count}}</b> followers</a>
+                  <span class="glyphicon glyphicon-star"></span><a href="#" class="text-center">Favorites</a> &nbsp
+                 <span class="glyphicon glyphicon-lamp"></span><a href="#" class="text-center">Pictures</a> &nbsp
+                   </div><hr>
+                  <p><img style="width:20px;height:20px;" src="{% static 'icons/user3.png' %}"> <b>Frist Name</b>:&nbsp&nbsp {{fp.user.first_name}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/father.png' %}">  <b>Last Name</b>:&nbsp&nbsp {{fp.user.last_name}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/mssg.png' %}"> <b>Email</b>:&nbsp&nbsp {{fp.user.email}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/location.png' %}"> <b>Address</b>:&nbsp&nbsp {{fp.address}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/phone2.png' %}"> <b>Phone</b>:&nbsp&nbsp {{fp.phone}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/gender2.png' %}"> <b>Gender</b>:&nbsp&nbsp {{fp.gender}}</p>
+                        <p><img style="width:20px;height:20px;" src="{% static 'icons/star.png' %}"> <b>Work</b>:&nbsp&nbsp {{fp.work}}</p>
+                        <p ><img style="width:20px;height:20px;" src="{% static 'icons/team1.png' %}"> <b>Follower</b>:&nbsp&nbsp <a href="">followed by {{fp.follower.count}} people</a></p>
+                 </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

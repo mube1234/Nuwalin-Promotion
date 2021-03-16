@@ -1,0 +1,29 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+ {% if request.user.is_staff %}
+<div class="container-fluid" style="margin-top:80px;background:#f2f2f2">
+    <div class="row">
+        <div class="col-sm-6"><br>
+              <h5>Total {{suggestion.count}} suggestion</h5>
+
+               <div class="card card-body">
+                   {% for suggest in suggestion %}
+                <div >
+                      <h5 class="alert alert-info">{{suggest.user.get_full_name}}</h5>
+                   <p style="margin-left:30px;"><i>{{suggest.suggestion}}</i></p>
+                   <small class="text-muted" style="margin-left:30px;">{{suggest.timestamp}}</small>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                    <button style="float:right" type="button" class="btn btn-info btn-sm">Replay</button>
+                   </form>
+                </div>
+                   {% endfor %}
+               </div>
+
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

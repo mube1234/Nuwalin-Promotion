@@ -1,0 +1,105 @@
+{% extends 'promotion/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+<!--    Advertisment promotion-->
+{% if advorder %}
+        <div class="col-md-12">
+  <div class=" card card-body">
+      <h4>Recent Advertisement Orders</h4>
+      <table class="table table-striped table-bordered" >
+
+                    <tr>
+                         <th>Owner</th>
+                         <th>Business Name</th>
+                         <th>Date Ordered</th>
+                         <th>Status</th>
+                         <th>Detail</th>
+                    </tr>
+                    {% for order in advorder %}
+                        <tr>
+                            <td>{{order.ad_owner.get_full_name}}</td>
+                            <td>{{order.business_name}}</td>
+                            <td>{{order.date_posted|date:"F d, Y"}}</td>
+                            <td><b>{{order.status}}</b></td>
+                             <td><a href="">Detail</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+          </div>
+    </div>
+ {% else %}
+    <p class="alert alert-info"> Currently you don't have any request for Advertisement</a> </p>
+
+{% endif %}
+<!--    Sales promotion-->
+{% if salesorder %}
+    <div class="col-md-12">
+  <div class=" card card-body">
+      <h5>Recent Sales Promotion Orders</h5>
+      <table class="table table-striped table-bordered" >
+
+                    <tr>
+                         <th>Owner</th>
+                         <th>Business Name</th>
+                         <th>Date Ordered</th>
+                         <th>Status</th>
+                         <th>Detail</th>
+                    </tr>
+                    {% for order in salesorder %}
+                        <tr>
+                                <td>{{order.owner.get_full_name}}</td>
+                            <td>{{order.business_name}}</td>
+                            <td>{{order.date_posted|date:"F d, Y"}}</td>
+                            <td><b>{{order.status}}</b></td>
+                            <td><a href="">Detail</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+          </div>
+    </div>
+{% else %}
+    <p class="alert alert-Warning"> Currently you don't have any request for Sales Promotion</a> </p>
+
+{% endif %}
+
+ <!--    Other type of promotion-->
+{% if otherorder %}
+<div class="col-md-12">
+  <div class=" card card-body">
+      <h5>Recent Other Promotion Orders</h5>
+      <table class="table table-striped table-bordered" >
+
+                    <tr>
+                         <th>Owner</th>
+                         <th>Business Name</th>
+                         <th>Date Ordered</th>
+                         <th>Status</th>
+                         <th>Detail</th>
+                    </tr>
+                    {% for order in otherorder %}
+                        <tr>
+                                <td>{{order.owner.get_full_name}}</td>
+                            <td>{{order.description|linebreaksbr|slice:":200"}}...</td>
+                            <td>{{order.date_posted|date:"F d, Y"}}</td>
+                            <td><b>{{order.status}}</b></td>
+                            <td><a href="">Detail</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+          </div>
+    </div>
+{% else %}
+    <p class="alert alert-success"> Currently you don't have any request for Other Promotion</a> </p>
+
+{% endif %}
+      <div class="row">
+        <div class="col-md-4">
+             <div class="card card-body">
+              <a href="{% url 'promotion_category' %}" class="btn btn-outline-success"> Make New Promotion</a><br>
+              <a href="{% url 'home' %}" class="btn btn-outline-info">  View Promotion</a>
+              </div>
+        </div>
+      </div>
+</div>
+{% endblock %}

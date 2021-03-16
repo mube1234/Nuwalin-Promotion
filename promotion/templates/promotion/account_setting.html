@@ -1,0 +1,35 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container" style="margin-top:90px;">
+<div class="row" style="margin-top:10px;">
+     <div class="card card-body col-md-6">
+         <div class="alert alert-danger">Approve your account to continue!</div>
+         <p><img src="{% static 'icons/money2.png' %}"  style="height:25px;width:25px;">&nbsp;<b> Current Balance</b></p>
+            <div style="margin-left:30px;">
+                 <h6>Your Current balance = <kbd>0.00birr</kbd></h6>
+                <p>Minimum withdrawal = <kbd>30.00birr</kbd></p>
+             </div> <br>
+         <blockquote><img src="{% static 'icons/setting.png' %}" style="height:20px;width:20px;background:black"><b>  Account Setting</b></blockquote>
+         <div style="margin-left:30px;">
+                <p>f43hub9334ub is your secret key donot show to anyone</p>
+                <p>Start making money by Inviting friends to this page</p>
+                <p><a href="" class="btn btn-primary btn-sm">Affiliance</a>
+                    <a href="" class="btn btn-info btn-sm"  style="background:gray;color:white">Share promotion</a>
+                 </p>
+      <p><a href="" class="btn btn-info btn-sm">Invite friends</a>
+       <a href="" class="btn btn-info btn-sm" style="background:indigo;color:white">Withdraw money</a>
+      </p>
+        </div><br>
+          <blockquote><img src="{% static 'icons/security.png' %}" style="height:25px;width:25px;"><b>Privacy and security</b></blockquote>
+               <div style="margin-left:30px;">
+                   <p>Location</p>
+                   <p>Active Status</p>
+                   <p>Legal and policies</p>
+               </div>
+    </div>
+
+</div>
+</div>
+    {% endblock content %}

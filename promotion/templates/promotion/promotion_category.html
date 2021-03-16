@@ -1,0 +1,71 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container-fluid"  style="margin-top:90px;">
+  <div class="card">
+     <div class="col-md-12 card-header">
+       <h4 class="">What kind of promotion are you looking for?</h4>
+     </div>
+  <div class="card-body">
+      <div class="row">
+     <div class="card card-body col-md-3">
+         <h4 class="row alert alert-primary">Advertising</h4>
+         <p>
+             <a href="">Types of promotion that can be published under this categories are:</a>
+             <li>Hotel</li>
+             <li>Cafe</li>
+             <li>Shops</li>
+             <li>School</li>
+             <li>and Other related.</li>
+         </p>
+      <a href="{% url 'advertising' %}" class="btn btn-outline-warning" >Start Now</a>
+
+     </div>
+       <div class="card card-body col-md-3">
+         <h4 class="row alert alert-warning">Sales promotion</h4>
+           <p>
+               <a href="">Types of promotion that can be published under this categories are:</a>
+               <li>Supermarker</li>
+               <li>Minimarket</li>
+               <li>Different kind of product</li>
+               <li>and other related.</li>
+           </p>
+     <a href="{% url 'sales_promo' %}" class="btn btn-outline-info " >Start Now</a>
+
+       </div>
+       <div class="card card-body col-md-3">
+         <h4 class="row alert alert-success">Publicity</h4>
+           <p>
+               <a href="">Types of promotion that can be published under this categories are:</a>
+               <li>Different kind of programs</li>
+               <li>Different kind of Ideologies</li>
+               <li>Announcement</li>
+               <li>and other related.</li>
+           </p>
+     <a href="{% url 'sales_promo' %}" class="btn btn-outline-success" >Start Now</a>
+
+       </div>
+      <div class="card card-body col-md-3">
+         <h4 class="row alert alert-danger">Other</h4>
+           <p>Other any kinds of ideas here can be pblished shortly with us Other any kinds of ideas here can be pblished shortly with us</p>
+       <a href="{% url 'otherpromotion' %}" class="btn btn-outline-primary" >Start Now</a>
+
+      </div>
+  </div><hr>
+      <center><p><b>OR</b></p></center>
+      <hr>
+    <div class="container">
+        <h5> <label>Call us direct </label>
+           <div style="margin-left:20px;">
+              <p>  <a href="tel:+251941208840"> +251 941208840</a></p>
+              <p> <a href="tel:+251954078859"> +251 954078859</a></p>
+           </div>
+        </h5>
+         <p class="container">Incase something unclear things happen please call us and let's we talk</p>
+
+    </div>
+        </div>
+         </div>
+</div>
+    {% endblock content %}

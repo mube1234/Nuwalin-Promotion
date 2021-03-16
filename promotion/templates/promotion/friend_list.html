@@ -1,0 +1,41 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+<div class="row">
+ <div class="card col-md-8">
+    <center> <h3>People you may know</h3></center><br>
+      <form action="" class="form-inline">
+         {% csrf_token %}
+           <input style="width:70%" type="search" placeholder="Search for people" class="form-control" name="q" required="required">
+            <button class="btn btn-primary" type="submit">Search</button>
+       </form>
+         {% for fr in friendlist %}
+        <div class="card card-body">
+            <div class="row">
+            <div class="row col-md-7">
+                <div class="col-md-4" >
+                    <img style="width:90px;height:90px;margin-right:16px" class="rounded-circle" src="{{fr.userprofile.image.url}}" alt="your_image_here">
+                </div>
+                <div class="col-md-8">
+                <a href="{% url 'friend_profile' fr.id %}">{{fr.get_full_name}}</a>
+                <p><img style="width:20px;height:20px;" src="{% static 'icons/location.png' %}">
+                    {{fr.userprofile.address}}</p>
+                   <a href="" class="btn btn-success btn-sm">Message</a>
+                   <a href="{% url 'friend_profile' fr.id %}" class="btn btn-primary btn-sm"> Profile</a><br>
+                </div>
+            </div>
+          </div>
+        </div>
+             <!--        if searched user not found-->
+                    {% empty %}
+                     <div class="card card-body">
+                         <p>Sorry No user found with query <b>{{request.GET.q}}</b></p>
+                     </div>
+            {% endfor %}
+             <p><a href="">More</a> </p>
+         </div>
+      </div>
+  </div>
+    {% endblock content %}

@@ -1,0 +1,223 @@
+{% extends 'promotion/base.html' %}
+{% load static %}
+{% block content %}
+  <div style="background:#2e004d;color:#ffffff">
+       <div class="container"><br><br><br><br><br><br>
+         <h5>Wellcome <span style="opacity:0.5">2</span></h5>
+           <h2 style="color:#99e600"><b>Nuwalin Promotion</b></h2>
+            <i style="font-size:15px;">Namoonni Oomisha garaagaraa beeksifachuun akka uummata bira bal'inaan isinif ga'uu barbaaddan fi biizinesii keessan baballifachuu feetan gara keenya kootta waliin hojjenne qaroomna isiniin jedha NUWALIN PROMOTION.</i><br><br>
+           {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}" class="btn btn-outline-info">Login</a>
+            <a href="{% url 'register' %}" class="btn  btn-outline-warning">Get Started</a><br><br>
+
+           {% endif %}
+       </div>
+      <div style="padding-bottom:8px;"></div>
+
+  </div>
+
+   <div class="col-md-12 card card-body" style="background:#e2e2e2">
+       <center><img src="{% static 'icons/bullish.png' %}"></center>
+        <center><h5 style="color:#009900"><i> Grow Your business with us</i></h5></center>
+     <p style="font-size:15px;">We are on the ground,helping to build successful and scalable business.keep working with us and you will see the embrassing change in your business world.</p>
+
+   </div><br>
+<center><h3><b>Recent Promotions</b></h3></center>
+<div class="container">
+  {% for post in posts %}
+      <div class="card card-body">
+        <div class="row">
+
+            <div class="col-md-6">
+                <a href="#"><img style="width:100%;height:auto" class="card-img-top" src="{{post.image1.url}}"></a>
+            </div>
+            <div class="col-md-6">
+
+                     <a href="{% url 'promotion_detail' post.id %}" style="font-size:20px" class="card-title">{{post.business_name}}</a>
+                      <p >{{post.description|linebreaksbr|slice:":200"}}...</p>
+                      <p style="color: #cc0088"><img style="height:20px;weight:20px;"  src="static/icons/gps.png"> {{post.address}}</p>
+                 <p> <small class="text-muted">{{post.date_posted|date:"F d, Y"}}</small></p>
+                     <a href="{% url 'promotion_detail' post.id %}" class="btn  btn-outline-primary btn-sm">Read More</a>
+                     <div style="float:right">
+                          <a href=""> <img style="height:20px;weight:20px;"  src="{% static 'icons/star2.png' %}"></a>&nbsp&nbsp
+                          <a href=""> <img style="height:20px;weight:20px;"  src="{% static 'icons/star2.png' %}"></a>&nbsp&nbsp
+                          <a href=""> <img style="height:20px;weight:20px;"  src="{% static 'icons/star2.png' %}"></a>&nbsp&nbsp
+                          <a href=""> <img style="height:20px;weight:20px;"  src="{% static 'icons/star.png' %}"></a>&nbsp&nbsp
+                          <a href=""> <img style="height:20px;weight:20px;"  src="{% static 'icons/star.png' %}"></a>&nbsp&nbsp
+                 </div>
+             </div>
+        </div>
+</div>
+ {% endfor %}
+<!--    pagination-->
+    <div class="card card-body container" style="background:;margin-bottom:20px;">
+      <div class="panel  panel-default panel-body">
+    <div class=" pagination">
+    <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+
+        {% endif %}
+    </span>
+</div>
+</div>
+</div>
+<!--    end of pagination-->
+
+      <div class="row">
+       <div class="col-md-4">
+
+                 <div class="card card-body">
+                      <center><img class="card-img-top" style="width:50px;height:50px;" src="{% static 'icons/friends.png' %}"></center>
+                     <center><p><a class="card-title" href="{% url 'friend_list' %}" style="font-size:18px">Connect With Friends</a></p></center>
+                        <p>Discover and connect with different kinds of people from around you
+                        to discuss and talk about your business.</p>
+                        <a href="{% url 'friend_list' %}" class="btn   btn-outline-success">Find people
+                     <p style="float:right"> <img   style="width:20px;height:20px;" src="{% static 'icons/arow1.png' %}"></p>
+                        </a>
+                 </div>
+       </div>
+         <div class="col-md-4">
+
+                 <div class="card card-body">
+                      <center><img class="card-img-top" style="width:50px;height:50px;" src="{% static 'icons/business2.png' %}"></center>
+                      <center><p>
+                       <a class="card-title" href="{% url 'promotion_category' %}" style="font-size:18px">Grow Your business</a></p></center>
+                        <p>Tell us about your idea and we will contact you shortly to increase the spreading of your
+                            business marketing.</p>
+                       <a href="{% url 'promotion_category' %}" class="btn   btn-outline-warning">Need promotion
+                     <p style="float:right"> <img   style="width:20px;height:20px;" src="{% static 'icons/arow1.png' %}"></p>
+                        </a>
+
+                 </div>
+       </div>
+         <div class="col-md-4">
+
+                 <div class="card card-body">
+                      <center><img class="card-img-top" style="width:50px;height:50px;" src="{% static 'icons/money1.png' %}"></center>
+                     <center> <p> <a class="card-title" href="{% url 'make_money' %}" style="font-size:18px">Make Money daily</a></p></center>
+                        <p>If you agree to our terms and policies you will be benefited by
+                        making money daily according to your engagement.</p>
+                        <a href="{% url 'make_money' %}" class="btn  btn-outline-primary">Start Now
+                     <p style="float:right"> <img   style="width:20px;height:20px;" src="{% static 'icons/arow1.png' %}"></p>
+                        </a>
+
+                 </div>
+       </div>
+     </div>
+<!--      -->
+    <div class="card card-body" style="background:#004477;color:#ffffff;padding:20px;">
+      <div class="col-md-12">
+           <center> <h3>Our Community</h3></center><br>
+          <div class="row">
+            <div class="col-md-4">
+                <p style="font-size:1.5em" class="counter">636</p>
+                <a href="">Facebook</a>
+            </div>
+            <div class="col-md-4">
+                <p style="font-size:1.5em" class="counter">1283</p>
+                <a href="t.me/nuwalin_promotion">Telegram</a>
+            </div>
+            <div class="col-md-4">
+               <p style="font-size:1.5em" class="counter">345</p>
+                <a href="">Linkedin</a>
+            </div>
+    </div>
+   </div>
+</div>
+
+<!--news here
+--><br>
+    <div class="row">
+        <div class="col-md-6">
+             <div class="card">
+                 <div class="card-header"><h5>Recently Asked Questions</h5></div>
+                  <div class="card-body">
+                      {% for fq in questionpost %}
+                         <div class="card card-body">
+                         <p><img src="{% static 'icons/info.png' %}" style="height:20px;width:20px;"> {{fq.question}}</p>
+                         <small class="text-muted" style="text-align:right">{{fq.user.get_full_name}}</small>
+                         </div>
+                            {% endfor %}
+
+               </div>
+
+
+                  <!--    pagination-->
+    <div class="card card-body container" style="background:;margin-bottom:20px;">
+      <div class="panel  panel-default panel-body">
+    <div class=" pagination">
+    <span class="step-links">
+        {% if questionpost.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ questionpost.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questionpost.number }} of {{ questionpost.paginator.num_pages }}.
+        </span>
+
+        {% if questionpost.has_next %}
+            <a href="?page={{ questionpost.next_page_number }}">next</a>
+
+        {% endif %}
+    </span>
+</div>
+</div>
+</div>
+
+             </div>
+        </div>
+         <div class="col-md-6">
+             <div class="card">
+                 <div class="card-header" style="background:#000050;color:#ffffff"><h3>Popular Posts</h3></div>
+                 <div class="card-body ">
+                     <li class="list-group-item"><img src="{% static 'icons/news.png' %}" style="height:30px;width:30px;">&nbsp;&nbsp <a href="{% url 'news' %}">Latest Information</a></li>
+                     <li class="list-group-item"><img src="{% static 'icons/drama.png' %}" style="height:30px;width:30px;">&nbsp;&nbsp  <a href="{% url 'entertainment' %}">Entertainment
+                        {% load total_users %}
+                       {% all_entertainment %}
+                         </a></li>
+
+                     <li class="list-group-item"><img src="{% static 'icons/team1.png' %}" style="height:30px;width:30px;">&nbsp;&nbsp  <a href="{% url 'friend_list' %}">Descover  peoples
+                      {% load total_users %}
+                       {% all_users %}
+                     </a></li>
+                    <li  class="list-group-item"><img src="{% static 'icons/faq.png' %}" style="height:30px;width:30px;">&nbsp;&nbsp  <a href="{% url 'fqa' %}" >FQA
+                      {% load total_users %}
+                       {% all_fqa %}
+                    </a></li>
+
+
+                 </div>
+             </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+    $(function(){
+
+        // Counter for dashboard stats
+        $('.counter').counterUp(
+            {
+            delay: 10,
+            time: 2000
+        });
+
+
+
+    });
+</script>
+{% endblock content %}

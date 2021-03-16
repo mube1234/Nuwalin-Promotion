@@ -1,0 +1,31 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="row">
+<div class="container" style="margin-top:90px;">
+ <div class="col-md-8" >
+     <div class="card" style="background:#456797;color:white">
+        <div class="card-body">
+         <center><h4 style="color:white">Attach Promotion here</h4></center><hr>
+           {% if messages %}
+             {% for message in messages %}
+              <div style="background:green;color:white" class="alert alert-success left-icon-alert" role="alert">
+               <strong>Well done!</strong>
+                {{message}}
+               </div>
+              {% endfor %}
+            {% endif %}
+         <form action="" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                  <div>
+                      {{form|crispy}}<br>
+                      <button type="submit"  class="btn btn-success">Attach Now</button>
+                  </div>
+          </form>
+       </div>
+ </div>
+</div>
+</div>
+</div>
+ {% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'promotion/base.html' %}
+{% block title %}Approve{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<div class="container-fluid"  style="margin-top:90px;">
+<div class="row">
+ <div class="col-md-5">
+     <form action="" method="post">
+          {% csrf_token %}
+          <div class="card card-body">
+              <center><h4><b>Confirm Promotion Order For sales promotion</b></h4></center><hr>
+              {{form|crispy}}<br>
+              <div class="form-group">
+                  <button class="btn btn-success" type="submit" >Confirm</button>
+                  <a class="btn btn-danger mr-2" href="{% url 'sales_order' %}" >Cancel</a>
+               </div>
+          </div>
+     </form>
+ </div>
+</div>
+</div>
+{% endblock content %}

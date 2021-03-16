@@ -1,0 +1,39 @@
+{% load static %}
+<footer class="footer" style="background:#000020;color:#ffffff;padding:5px;">
+<div class="container">
+<div class="row">
+        <div class="col-md-4">
+       <h4>NUWALIN PROMOTION</h4><hr style="background:green;height:3px;">
+        <p>Nuwalin Promotion is a technical partner for the growth of your business and digital
+        transformation. We strive for quality,innovation and transparent partnership.</p>
+   </div>
+   <div class="col-md-4">
+      <h4>CONTACTS</h4><hr style="background:green;height:3px">
+     <p>  <a href="tel:+251941208840"> +251 941208840</a></p>
+       <p><a href="tel:+251954078859"> +251 954078859</a></p>
+       <div>
+          <a href=""> <img class="rounded-circle" style="width:30px;height:30px;" src="{% static 'icons/Facebook.png' %}">  </a>&nbsp&nbsp
+          <a href=""> <img class="rounded-circle" style="width:30px;height:30px;" src="{% static 'icons/gmail.png' %}">  </a>&nbsp&nbsp
+          <a href=""> <img class="rounded-circle" style="width:30px;height:30px;" src="{% static 'icons/linkedin.png' %}">  </a>&nbsp&nbsp
+           <a href="t.me/nuwalin_promotion"> <img class="rounded-circle" style="width:30px;height:30px;" src="{% static 'icons/tg.jpg' %}">  </a>&nbsp&nbsp
+           <a href=""> <img class="rounded-circle" style="width:30px;height:30px;" src="{% static 'icons/twitter.png' %}">  </a>&nbsp&nbsp
+       </div>
+    </div>
+
+     <div class="col-md-4">
+       <h4>SERVICES</h4><hr style="background:green;height:3px">
+        <p> <a href="{% url 'promotion_category' %}" style="color:white">Promotion</a></p>
+        <p><a href="{% url 'help' %}" style="color:white">Help</a> </p>
+         <p><a href="{% url 'suggestion' %}" style="color:white" >Suggestion</a></p>
+          {% if user.is_authenticated %}
+       <p>  <a href="{% url 'logout' %}" style="color:white">Logout</a></p>
+          {% endif %}
+   </div>
+</div><hr style="background-color:white">
+    <div class="col-md-12">
+        <p style="text-align:center;color:#fff">&#169 Copyright 2021, All right reserved</p>
+        <p style="text-align:center;color:#fff">powered by <a href="https://burkatech.netlify.com"> Burqaa-tech</a> </p>
+  </div>
+
+</div>
+</footer>

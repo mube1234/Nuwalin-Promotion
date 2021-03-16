@@ -1,0 +1,24 @@
+{% extends 'promotion/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" style="margin-top:90px;">
+ <div class="row">
+     <div class="col-md-2"></div>
+       <article class="col-md-8">
+          <div class="card card-body">
+             <p><img src="{{news.image.url}}" style="width:100%;height:auto"></p>
+              <small class="text-muted text-right"> on {{funny.date_posted|date:"F d, Y"}}</small>
+             <h4>{{funny.title}}</h4>
+              <p class="article-content">{{funny.body}}</p>
+              {% if funny.author == user %}
+               <div class="form-inlines">
+               <a class="btn btn-info" href=""><span class="glyphicon glyphicon-edit" ></span> Update</a>
+               <a class="btn btn-danger" href=""><span class="glyphicon glyphicon-remove-circle" ></span> Delete</a>
+               </div>
+            {% endif %}
+            <hr>
+         </div>
+    </article>
+ </div>
+</div>
+{% endblock content %}

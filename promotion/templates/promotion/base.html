@@ -1,0 +1,45 @@
+ {% load static %}
+<html>
+    <head>
+       <title>
+       {% block title %} Nuwalin Promotion {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+   <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+
+<!--    important script tags-->
+    <script src="{% static 'js/jquery-1.11.3.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script>
+      $(document).ready(function()
+     {
+      $(".delete").click(function()
+          {
+          return confirm("Are you sure to delete this promotion?")
+          });
+
+      $(".deletefqa").click(function()
+          {
+          return confirm("Are you sure to delete this fqa?")
+          });
+      $(".userdelete").click(function()
+          {
+          return confirm("Are you sure to delete this user?")
+          });
+    });
+     </script>
+    </head>
+    <body>
+      {% include 'promotion/navbar.html' %}
+        {% block content %}
+
+
+        {% endblock content  %}
+    {% include 'promotion/footer.html' %}
+    </body>
+</html>
+ <!-- ========== COMMON JS FILES for counting up ========== -->
+
+ <script src="{% static 'js/js/waypoint/waypoints.min.js' %}"></script>
+<script src="{% static 'js/js/counterUp/jquery.counterup.min.js' %}"></script>
+

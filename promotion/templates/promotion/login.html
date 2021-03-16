@@ -1,0 +1,31 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="col-md-12" style="margin-top:70px;">
+  <div class="col-md-7">
+       <form action="" method="post">
+           {% csrf_token %}
+           <h4 style="text-align:center">Login</h4>
+           <center><img src="{% static 'icons/user1.png' %}"></center><br>
+             {% if errord %}
+                <div class="alert alert-danger">
+                {% for message in messages %}
+                            <p style="text-align:center">{{message}}</p>
+                {% endfor %}
+                 </div>
+             {% endif %}
+              <div class="input-group">
+                  <input type="text" name="username" class="form-control" placeholder="Username" required="required">
+              </div><br>
+              <div class="input-group">
+              <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+              </div>
+            <a href="{% url 'forgot_password' %}" >forgot password?</a><br><br>
+             <button type="submit" name="login" class="btn btn-info ">Login</button>
+             <a href="{% url 'register' %}" style="float:right" class="btn btn-success btn-sm"> Create Account</a>
+        </form>
+  </div>
+ </div>
+ </div>
+{% endblock content %}

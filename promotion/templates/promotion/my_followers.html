@@ -1,0 +1,24 @@
+{% extends 'promotion/base.html' %}
+{% block title %}Follower{% endblock %}
+{% block content %}
+{% load static %}
+   <div class="container-fluid" style="margin-top:90px;">
+       <div class="row">
+
+                <div class="card card-body col-md-5">
+                    <h3>My Followers</h3><hr>
+                {% if all_follower %}
+                     {% for af in  all_follower %}
+                   <p> <img class="rounded-circle "  src="{{af.userprofile.image.url}}" style="width:50px;height:50px"/></a>
+                    <a href="{% url 'friend_profile' af.id %}">{{af.get_full_name}}</a></p>
+                        {% endfor %}
+                 {% else %}
+                    <p class="alert alert-danger">you have no followers</p>
+                {% endif %}
+                </div>
+
+
+       </div>
+
+   </div>
+{% endblock content %}

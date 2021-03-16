@@ -1,0 +1,25 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+  <div class="container-fluid" style="margin-top:90px;">
+  <div class="row">
+  <div class="col-md-6">
+  <div class="card">
+      <form method="post" action="">
+          {% csrf_token %}
+          <div class="card-header" style="background:black;color:white">
+             <h4 > Make money today</h4>
+          </div>
+                    <div class="card-body">
+                        <p class="alert alert-warning">! You only make this form once so fill it carefully</p>
+                         {{form|crispy}}
+                         <button type="submit" class="btn btn-info">Next</button>
+                    </div>
+      </form>
+  </div>
+  </div>
+  </div>
+  </div>
+
+{% endblock content %}

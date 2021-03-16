@@ -1,0 +1,39 @@
+{% extends 'promotion/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container" style="margin-top:90px;">
+    <div class="row">
+        <div class="col-sm-6">
+           <div class="card card-body">
+                <p class="card card-header">What type of product you want?</p><br>
+               {% if messages %}
+                    {% for message in messages %}
+                    <p style="background:green;color:white" class="alert alert-success">{{message}}  <a href="{% url 'home' %}">back to home</a></p>
+                    {% endfor %}
+              {% endif %}
+               <form action=""  method="post">
+                 {% csrf_token %}
+                     {{form|crispy}}
+                 <button class="btn btn-info " style="background:indigo;color:white" type="submit">Enter</button>
+             </form>
+           </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-body">
+                <h5>Previously Asked Questions</h5>
+               {% for fq in fqa %}
+                <div class="alert alert-info">
+                    <p>{{fq.question}}</p>
+                     <small class="text-muted">{{fq.user.get_full_name}}</small>
+                    <small style="float:right">{{fq.timestamp}}</small>
+                      {% if request.user.is_staff %}
+                       <b><a  class="deletefqa btn btn-danger btn-sm "   href="{% url 'deletefqa' fq.id %}" > Delete</a></b>
+                      {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

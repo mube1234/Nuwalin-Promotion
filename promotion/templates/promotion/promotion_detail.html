@@ -1,0 +1,49 @@
+{% extends 'promotion/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row" style="margin-top:90px;">
+ <div class="col-md-8">
+  <div class="card">
+    <div class="card-body">
+      {% if post.image1 and post.image2 %}
+         <div class="row">
+                     <div class="col-md-6">
+                       <p><img src="{{post.image1.url}}" style="width:100%;height:auto"></p>
+                     </div>
+                 <div class="col-md-6">
+                      <p><img src="{{post.image2.url}}" style="width:100%;height:auto"></p>
+                 </div>
+         </div>
+             {% else %}
+            <p><img src="{{post.image1.url}}" style="width:100%;height:auto"></p>
+
+        {% endif %}
+ <h3>{{post.business_name}}</h3><hr>
+<p> <small class="text-muted"><img src="{% static 'icons/date.png' %}" style="height:20px;width:20px;"> {{post.date_posted|date:"F d, Y"}}</small></p>
+ <p class="article-content">{{post.description}}</p>
+ <p>Contact: {{post.contact_info}}</p>
+   {% if request.user.is_staff %}
+   <b> <a class="btn btn-success" href="{% url 'update' post.id %}">Edit</a></b>
+   <b><a  class="delete btn btn-danger" style="margin-left:50px" href="{% url 'delete_promotion' post.id %}" > Delete</a></b>
+  {% endif %}
+
+<!--                  for liking the post-->
+
+  <form action="{% url 'promotion_like' %}" method="post">
+      {% csrf_token %}
+      {% if is_liked %}
+      <button class="btn btn-link btn-sm" type="submit" name="post_id" value="{{post.id}}"><img src="{% static 'icons/yeslike.png' %}" style="height:20px;width:20px"></button><b style="color:990099;font-size:12px">{{total_likes}}  Likes </b> &nbsp
+
+      {% else %}
+         <button class="btn btn-link btn-sm" type="submit" name="post_id" value="{{post.id}}"><img src="{% static 'icons/nolike.png' %}" style="height:25px;width:25px"></button><b style="color:990099;font-size:12px">{{total_likes}}   Likes </b>
+      {% endif %}
+     </form>
+      <div style="margin-top:-40px;margin-left:100px">
+          <img src="{% static 'icons/view2.png' %}" style="height:20px;width:20px"><b style="color:990099;font-size:12px">{{count}} Views</b>
+      </div>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock content %}
